@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import rotlogo from './omdblogo.png';
 import './App.css';
+import Well from 'react-bootstrap/lib/Well';
 
 class App extends Component {
   handlePost(){
@@ -17,6 +18,7 @@ class App extends Component {
             <img src='' onerror=''/>
           </div>
           <div>
+          <Well>This is a test well!</Well>
             <h2>MOVIE TITLE HERE</h2>
             <p>Date for the movie here (country)</p>
             <br/>
