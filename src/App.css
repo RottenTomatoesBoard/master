@@ -1,12 +1,51 @@
+.searchview{
+  background-color: #3A9425;
+}
 .App-logo {
-  height: 60px;
+  height: 50px;
+}
+.App-logo2{
+  height:60px;
+  margin-bottom:20px;
 }
 
+.container{
+    background-color:#ffffff;
+    padding-top:50px;
+    padding-bottom:50px;
+    margin-bottom:50px;
+}
+.input-group{
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 90%;
+  margin: auto;
+}
+.input-group-append, .input-group-prepend{
+  display: flex;
+  margin-left: -1px;
+}
 .App-header {
   background-color: #3A9425;
-  height: 50px;
+  /* height: 50px; */
   padding: 5px 15px;
   color: white;
+}
+
+.star{
+    height:25px;
+    width:25px;
+    margin-right:10px;
+}
+
+.rating img,
+.rating div{
+  display:inline-block;
 }
 
 .movieimage{
@@ -14,12 +53,38 @@
   height:305px;
   border:1px solid #000000;
 }
-
+.searchview{
+  height:100vh;
+  width:100vw;
+  text-align: center;
+}
+.displayinfo{
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.movieinput{
+  height:34px;
+}
 .required{
   color:red;
+}
+
+textarea {
+  overflow:auto;
+  resize: none;
 }
 
 .commentbox{
   border:1px solid #000000;
   padding:20px;
+}
+
+.btn-success{
+  margin-top:10px;
+  margin-bottom:20px;
 }
