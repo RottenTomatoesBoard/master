@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import rotlogo from './omdblogo.png';
 import star from './Star.svg';
-import movieposter from './movieposter.jpg';
 import './App.css';
 import Well from 'react-bootstrap/lib/Well';
 
