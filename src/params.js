@@ -73,8 +73,7 @@ class Params extends Component {
       <div className="App">
         <header className="App-header">
           <a href="/" target="_self"><img src={rotlogo} className="App-logo" alt="logo" /></a>
-          <form>
-            <div className="input-group">
+            <div className="input-group2">
               <input type="text" className="form-control" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
                <div className="input-group-btn">
                 <Link to={`/id/${this.state.dataN.imdbID}`} onClick={this.handleClick.bind(this)}>
@@ -84,7 +83,6 @@ class Params extends Component {
                 </Link>
               </div>
             </div>
-        </form>
         </header>
         <div className="container">
           <div className="movieimage ">

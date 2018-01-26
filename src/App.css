@@ -28,6 +28,18 @@
   width: 90%;
   margin: auto;
 }
+.input-group2{
+  position: relative;
+    display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: calc(100% - 115px);
+    float: right;
+    padding-right:34px;
+}
 .input-group-append, .input-group-prepend{
   display: flex;
   margin-left: -1px;
@@ -56,7 +68,6 @@
 .movieimage{
   width:205px;
   height:305px;
-  border:1px solid #000000;
   float:left;
 }
 .searchview{
