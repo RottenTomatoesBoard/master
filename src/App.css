@@ -3,6 +3,7 @@
 }
 .App-logo {
   height: 50px;
+  float: left;
 }
 .App-logo2{
   height:60px;
@@ -11,10 +12,11 @@
 
 .container{
     background-color:#ffffff;
-    padding-top:50px;
+    padding-top:100px;
     padding-bottom:50px;
     margin-bottom:50px;
 }
+
 .input-group{
   position: relative;
   display: -webkit-box;
@@ -26,6 +28,18 @@
   width: 90%;
   margin: auto;
 }
+.input-group2{
+  position: relative;
+    display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: calc(100% - 115px);
+    float: right;
+    padding-right:34px;
+}
 .input-group-append, .input-group-prepend{
   display: flex;
   margin-left: -1px;
@@ -35,6 +49,9 @@
   /* height: 50px; */
   padding: 5px 15px;
   color: white;
+  position: fixed;
+  width: 100%;
+  z-index:999;
 }
 
 .star{
@@ -51,7 +68,7 @@
 .movieimage{
   width:205px;
   height:305px;
-  border:1px solid #000000;
+  float:left;
 }
 .searchview{
   height:100vh;
