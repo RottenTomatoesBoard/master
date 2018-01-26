@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
+require('dotenv').config({path:'../.env'})
+
 
 class Params extends Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class Params extends Component {
  }
 
   handleChange(event){
-    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&t=' + event.target.value.replace(' ', '+');
+
+    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey='+process.env.REACT_APP_KEY+'=' + event.target.value.replace(' ', '+');
     this.setState({
       error: ''
     })
@@ -49,7 +52,7 @@ class Params extends Component {
 
 
   componentWillMount() {
-     axios.get('http://www.omdbapi.com/?i='+this.props.match.params.imdbID+'&apikey=88aa8b1e')
+     axios.get('http://www.omdbapi.com/?i='+this.props.match.params.imdbID+'&apikey='+process.env.REACT_APP_KEY)
      .then((res) => { 
       console.log(res.data)
        this.setState({
@@ -63,7 +66,6 @@ class Params extends Component {
     });
   }
   render() {
-
     let rating = '';
     if(this.state.data.Ratings){
         rating = this.state.data.Ratings[1].Value;
