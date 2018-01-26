@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import rotlogo from './omdblogo.png';
 import tomato from './tomato.png';
-import movieposter from './movieposter.jpg';
 import {Link} from 'react-router-dom';
-import MovieSearch from './MovieSearch';
 import axios from 'axios';
-import App from './App'
 import './App.css';
 
 
@@ -44,6 +41,12 @@ class Params extends Component {
     });
   }
 
+  handleClick(){
+    this.setState({
+      data: this.state.dataN
+    })
+  }
+
 
   componentWillMount() {
      axios.get('http://www.omdbapi.com/?i='+this.props.match.params.imdbID+'&apikey=88aa8b1e')
@@ -60,6 +63,12 @@ class Params extends Component {
     });
   }
   render() {
+
+    let rating = '';
+    if(this.state.data.Ratings){
+        rating = this.state.data.Ratings[1].Value;
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -68,7 +77,7 @@ class Params extends Component {
             <div className="input-group">
               <input type="text" className="form-control" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
                <div className="input-group-btn">
-                <Link to={`/id/${this.state.dataN.imdbID}`}>
+                <Link to={`/id/${this.state.dataN.imdbID}`} onClick={this.handleClick.bind(this)}>
                 <button className="btn btn-default" type="submit">
                   <i className="glyphicon glyphicon-search"/>
                 </button>
@@ -79,15 +88,15 @@ class Params extends Component {
         </header>
         <div className="container">
           <div className="movieimage ">
-            <img width={203} src={this.state.data.Poster} onError={this.onError.bind(this)} />
+            <img width={203} src={this.state.data.Poster} onError={this.onError.bind(this)} alt="poster"/>
           </div>
           <div className="col-lg-9 col-md-9 col-sm-10 col-xs-12">
             <h2>{this.state.data.Title}</h2>
             <h4>Year: {this.state.data.Year}</h4>
             <h4>Country: {this.state.data.Country}</h4>
             <div className="rating">
-              <img src={tomato} className="star" />
-              <div><p>tbd</p></div>
+              <img src={tomato} className="star" alt="tomato" />
+              <div><ul>{rating}</ul></div>
             </div>
             <p>{this.state.data.Plot}</p>
             <br/>
