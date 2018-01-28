@@ -42,6 +42,25 @@ class Params extends Component {
     .catch(err => {
       console.log(err)
     });
+    let url2 = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&s=' + event.target.value.replace(' ', '+');
+    this.setState({
+      error: ''
+    })
+    axios.get(url2)
+    .then((res) => {
+      if(res.data.Error){
+        this.setState({
+          error: res.data.Error
+        })
+      }
+      this.setState({
+        dataS: res.data.Search
+      });
+    })
+    .catch(err => {
+      console.log(err)
+    });
+  
   }
 
   handleClick(){
@@ -67,24 +86,44 @@ class Params extends Component {
   }
   render() {
     let rating = '';
+    let ratingarr =[];
     if(this.state.data.Ratings){
-        rating = this.state.data.Ratings[1].Value;
+      ratingarr=this.state.data.Ratings;
+      if(ratingarr.length >1) {
+        rating = this.state.data.Ratings[1].Value
+      } else {rating = "N/A"};
+    } 
+    const appendMovies = () => {
+      if(this.state.dataS){
+        return this.state.dataS.map((movie,index) => {
+          return (
+            <a href={`/id/${movie.imdbID}`}>
+            <li key={movie.imdbID} className="list-group-item">{movie.Title}</li>
+            </a>
+          )
+        })
+      } 
     }
-
     return (
       <div className="App">
         <header className="App-header">
           <a href="/" target="_self"><img src={rotlogo} className="App-logo" alt="logo" /></a>
             <div className="input-group2">
-              <input type="text" className="form-control" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
+              <input type="text" className="form-control searchbar" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
                <div className="input-group-btn">
                 <Link to={`/id/${this.state.dataN.imdbID}`} onClick={this.handleClick.bind(this)}>
                 <button className="btn btn-default" type="submit">
-                  <i className="glyphicon glyphicon-search"/>
+                <span className="glyphicon glyphicon-search"></span>
                 </button>
                 </Link>
               </div>
+              <div className="popup2">     
+                <ul className="list-group">
+                  {appendMovies()}
+                </ul>
+              </div>
             </div>
+
         </header>
         <div className="container">
           <div className="movieimage ">

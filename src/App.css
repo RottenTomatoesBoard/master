@@ -100,8 +100,33 @@ textarea {
   border:1px solid #000000;
   padding:20px;
 }
-
+/*.searchbar{
+  position:fixed;
+}*/
 .btn-success{
   margin-top:10px;
   margin-bottom:20px;
 }
+
+.popup{
+  text-align: left;
+  overflow:auto;
+  width: 90%;
+  margin: auto;
+  position: fixed;
+  margin-left: 5%;
+height: 40vh;
+}
+.popup2{
+  overflow: auto;
+    width: 90%;
+    position: fixed;
+    margin-top: 34px;
+        width: calc(100% - 188px);
+}
+
+.list-group-item{
+  background-color:rgba(58, 148, 37, 0.7);
+  color:white;
+}
+
