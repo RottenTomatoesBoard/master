@@ -127,7 +127,7 @@ class Params extends Component {
         </header>
         <div className="container">
           <div className="movieimage ">
-            <img width={203} src={this.state.data.Poster} onError={this.onError.bind(this)} alt="poster"/>
+            <img width={203} src={this.state.data.Poster} onError={this.onError.bind(this)} alt="Poster Not Available"/>
           </div>
           <div className="col-lg-9 col-md-9 col-sm-10 col-xs-12">
             <h2>{this.state.data.Title}</h2>
