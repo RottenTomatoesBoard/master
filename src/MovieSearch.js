@@ -9,14 +9,15 @@ class MovieSearch extends Component{
     constructor(props) {
     super(props);
     this.state = {
-      data: {},
       error: '',
-      dataS:[]
+      dataS:[],
+      data1:{}
     }
  }
 
   handleClick(event){
-    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&t=' + event.target.value.replace(' ', '+');
+
+    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&s=' + event.target.value.replace(' ', '+');
     this.setState({
       error: ''
     })
@@ -28,25 +29,8 @@ class MovieSearch extends Component{
         })
       }
       this.setState({
-        data: res.data
-      });
-    })
-    .catch(err => {
-      console.log(err)
-    });
-    let url2 = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&s=' + event.target.value.replace(' ', '+');
-    this.setState({
-      error: ''
-    })
-    axios.get(url2)
-    .then((res) => {
-      if(res.data.Error){
-        this.setState({
-          error: res.data.Error
-        })
-      }
-      this.setState({
-        dataS: res.data.Search
+        dataS: res.data.Search,
+        data1: res.data.Search[0]
       });
     })
     .catch(err => {
@@ -76,7 +60,7 @@ class MovieSearch extends Component{
           <div className="input-group">
             <input type="search" className="form-control" placeholder="Movie Search" aria-label="Movie Search" aria-describedby="basic-addon2" onChange={this.handleClick.bind(this)}/>
             <div className="input-group-append">
-             <Link to={`/id/${this.state.data.imdbID}`}>
+             <Link to={`/id/${this.state.data1.imdbID}`}>
                 <button className="btn btn-default" type="button">
                 <span className="glyphicon glyphicon-search"></span>
                 </button>

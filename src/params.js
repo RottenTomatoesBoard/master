@@ -14,6 +14,7 @@ class Params extends Component {
     this.state = {
       data: {},
       dataN: {},
+      data1:{},
       inputValue: '',
       error: ''
     }
@@ -23,8 +24,7 @@ class Params extends Component {
  }
 
   handleChange(event){
-
-    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey='+process.env.REACT_APP_KEY+'=' + event.target.value.replace(' ', '+');
+    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&s=' + event.target.value.replace(' ', '+');
     this.setState({
       error: ''
     })
@@ -36,25 +36,8 @@ class Params extends Component {
         })
       }
       this.setState({
-        dataN: res.data
-      });
-    })
-    .catch(err => {
-      console.log(err)
-    });
-    let url2 = 'http://www.omdbapi.com/?i=tt3896198&apikey=88aa8b1e&s=' + event.target.value.replace(' ', '+');
-    this.setState({
-      error: ''
-    })
-    axios.get(url2)
-    .then((res) => {
-      if(res.data.Error){
-        this.setState({
-          error: res.data.Error
-        })
-      }
-      this.setState({
-        dataS: res.data.Search
+        dataS: res.data.Search,
+        data1: res.data.Search[0]
       });
     })
     .catch(err => {
@@ -65,7 +48,7 @@ class Params extends Component {
 
   handleClick(){
     this.setState({
-      data: this.state.dataN
+      data: this.state.data1
     })
   }
 
@@ -111,7 +94,7 @@ class Params extends Component {
             <div className="input-group2">
               <input type="text" className="form-control searchbar" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
                <div className="input-group-btn">
-                <Link to={`/id/${this.state.dataN.imdbID}`} onClick={this.handleClick.bind(this)}>
+                <Link to={`/id/${this.state.data1.imdbID}`} onClick={this.handleClick.bind(this)}>
                 <button className="btn btn-default" type="submit">
                 <span className="glyphicon glyphicon-search"></span>
                 </button>
