@@ -56,7 +56,7 @@ class MovieSearch extends Component{
       <div className="searchview">
         <div className="displayinfo">
           <img src={rotlogo} className="App-logo2" alt="logo" />
-
+        <form action={`/id/${this.state.data1.imdbID}`}>
           <div className="input-group">
             <input type="search" className="form-control" placeholder="Movie Search" aria-label="Movie Search" aria-describedby="basic-addon2" onChange={this.handleClick.bind(this)}/>
             <div className="input-group-append">
@@ -65,8 +65,8 @@ class MovieSearch extends Component{
                 <span className="glyphicon glyphicon-search"></span>
                 </button>
              </Link>
-            </div>
-          </div>
+            </div> 
+          </div> </form>
          <div className="popup">     
             <ul className="list-group">
               {appendMovies()}

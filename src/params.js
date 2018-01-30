@@ -91,6 +91,7 @@ class Params extends Component {
       <div className="App">
         <header className="App-header">
           <a href="/" target="_self"><img src={rotlogo} className="App-logo" alt="logo" /></a>
+          <form action={`/id/${this.state.data1.imdbID}`}>
             <div className="input-group2">
               <input type="text" className="form-control searchbar" placeholder="Search Movies" onChange={this.handleChange.bind(this)}/>
                <div className="input-group-btn">
@@ -106,7 +107,7 @@ class Params extends Component {
                 </ul>
               </div>
             </div>
-
+            </form>
         </header>
         <div className="container">
           <div className="movieimage ">
