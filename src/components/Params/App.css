@@ -1,3 +1,19 @@
+textarea {
+    width: 40%;
+    height: 10em;
+    border-radius: 8px;
+    border: 1px solid rgb(204,204,204);
+    outline: none;
+    resize: none;
+}
+
+input {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgb(204,204,204);
+}
+
+
 .searchview{
   background-color: #3A9425;
 }

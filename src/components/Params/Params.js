@@ -68,26 +68,7 @@ class Params extends Component {
 
 
   handlePost(){
-
-
-    axios.post(`/api/name/${this.state.name}/${this.state.comment}/${this.props.match.params.imdbID}`)
-    function refreshPage(){
-      window.location.reload();
-  }
-  refreshPage()
-    //  axios({
-    //   method: 'post',
-    //   url: '/api/postComment',
-    //   data: {
-    //     name: this.state.name,
-    //     comment: this.state.comment,
-    //     imdbID: this.props.match.params.imdbID
-    //   }
-    // });
-  };
-
-
-  componentWillMount() {
+    //this is what fires after submit button is clicked to submit comment
     var d = new Date();
     var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     var months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -97,11 +78,21 @@ class Params extends Component {
     var dayOfMonth = d.getDate()
     var year = d.getFullYear()
 
-    //var timeStamp = monthOfYear + ' ' +dayOfMonth +', '+year;
+    var timeStamp = monthOfYear + ' ' +dayOfMonth +', '+year;
+
+    if (!this.state.name || !this.state.comment ) {
+      alert("You must provide both your name and your comment")
+    } else {
+
+    axios.post(`/api/name/${this.state.name}/${this.state.comment}/${this.props.match.params.imdbID}/${timeStamp}`)
+    function refreshPage(){
+      window.location.reload();
+      }
+    }
+  };
 
 
-    //this.props.actions.fetchComments(this.props.match.params.imdbID)
-
+  componentWillMount() {
 
      axios.get('http://www.omdbapi.com/?i='+this.props.match.params.imdbID+'&apikey='+process.env.REACT_APP_KEY)
      .then((res) => {
@@ -109,7 +100,7 @@ class Params extends Component {
          data: res.data
        });
      });
-     //this API call fetches comments from the DB
+     //this API call fetches comments from the DB and stores them in state
      axios.get(`/api/id/${this.props.match.params.imdbID}`)
      .then((comment) => {
        this.setState({
@@ -129,8 +120,9 @@ class Params extends Component {
     });
   }
   render() {
-    let comments = this.state.comments
 
+    //code below takes comments from state and then pushes them into rows array
+    let comments = this.state.comments
     var rows = [];
       for(var i = 0; i < comments.length; i++) {
         rows.push(<div key={i}><b>{comments[i].name}</b> <br /><span>{comments[i].body}</span><br /><i>Posted: {comments[i].timestamp}</i><br /><br /></div>);
@@ -155,6 +147,9 @@ class Params extends Component {
           })
         }
       }
+
+      //react-bootstrap stuff
+
 
 
     return (
@@ -211,7 +206,6 @@ class Params extends Component {
               <div >
                 <hr />
                 <h4>Comments </h4>
-
                 <div>
                   {rows}
                 </div>

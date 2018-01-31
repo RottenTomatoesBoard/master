@@ -7,7 +7,7 @@ const postcomment = require('./postcomment');
 api
   .get('/express-test', (req, res) => res.send({express: 'working!'})) //demo route to prove api is working
   .use('/:id', comments)
-  .use('/:name/:comment/imdbID', comments)
+  .use('/:name/:comment/imdbID/timeStamp', comments)
 
 
 

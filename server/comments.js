@@ -19,13 +19,13 @@ router.get('/:id', function(req, res, next) {
 
 
 
-router.post('/:name/:comment/:imdbID', function (req, res, next){
+router.post('/:name/:comment/:imdbID/:timeStamp', function (req, res, next){
   console.log('post comment router works', req.params.name, req.params.comment, req.params.imdbID);
   Comments.create({
     name: req.params.name,
     body: req.params.comment,
     imdbID: req.params.imdbID,
-    timestamp: '1/29/2018, 3:12:15'
+    timestamp: req.params.timeStamp
   })
   .then(result => {
       res.status(200).send(result);
