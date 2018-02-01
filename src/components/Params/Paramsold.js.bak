@@ -43,7 +43,7 @@ class Params extends Component {
     .catch(err => {
       console.log(err)
     });
-  
+
   }
 
   handleClick(){
@@ -55,7 +55,7 @@ class Params extends Component {
 
   componentWillMount() {
      axios.get('http://www.omdbapi.com/?i='+this.props.match.params.imdbID+'&apikey='+process.env.REACT_APP_KEY)
-     .then((res) => { 
+     .then((res) => {
       console.log(res.data)
        this.setState({
          data: res.data
@@ -75,7 +75,7 @@ class Params extends Component {
       if(ratingarr.length >1) {
         rating = this.state.data.Ratings[1].Value
       } else {rating = "N/A"};
-    } 
+    }
     const appendMovies = () => {
       if(this.state.dataS){
         return this.state.dataS.map((movie,index) => {
@@ -85,7 +85,7 @@ class Params extends Component {
             </a>
           )
         })
-      } 
+      }
     }
     return (
       <div className="App">
@@ -101,7 +101,7 @@ class Params extends Component {
                 </button>
                 </Link>
               </div>
-              <div className="popup2">     
+              <div className="popup2">
                 <ul className="list-group">
                   {appendMovies()}
                 </ul>
