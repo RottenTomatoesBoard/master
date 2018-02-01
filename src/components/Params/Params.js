@@ -4,6 +4,7 @@ import rotlogo from '../MovieSearch/omdblogo.png';
 import tomato from './tomato.png';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import defaultPoster from './movieposter.jpg'
 
 
 require('dotenv').config({path:'../.env'})
@@ -81,13 +82,15 @@ class Params extends Component {
     var timeStamp = monthOfYear + ' ' +dayOfMonth +', '+year;
 
     if (!this.state.name || !this.state.comment ) {
+      console.log('invalid form');
       alert("You must provide both your name and your comment")
+      return
     } else {
-
+      console.log('form is good');
     axios.post(`/api/name/${this.state.name}/${this.state.comment}/${this.props.match.params.imdbID}/${timeStamp}`)
-    function refreshPage(){
+    .then(function refreshPage(){
       window.location.reload();
-      }
+    })
     }
   };
 
@@ -119,6 +122,8 @@ class Params extends Component {
       imageUrl: "movieposter.jpg"
     });
   }
+
+
   render() {
 
     //code below takes comments from state and then pushes them into rows array
@@ -127,30 +132,50 @@ class Params extends Component {
       for(var i = 0; i < comments.length; i++) {
         rows.push(<div key={i}><b>{comments[i].name}</b> <br /><span>{comments[i].body}</span><br /><i>Posted: {comments[i].timestamp}</i><br /><br /></div>);
       }
+    let commentsHeading = 'Comments'
+    if (comments.length <=0) {
+      commentsHeading = 'Be the first one to make a comment about this movie!';
+    }
+    let ratingsrc = {}
+    let rating = '';
+    let ratingarr =[];
+    if(this.state.data.Ratings){
+      ratingarr=this.state.data.Ratings;
+      if(ratingarr.length >1) {
+        rating = this.state.data.Ratings[1].Value
+      } else {rating = "" };
+    }
 
-      let rating = '';
-      let ratingarr =[];
-      if(this.state.data.Ratings){
-        ratingarr=this.state.data.Ratings;
-        if(ratingarr.length >1) {
-          rating = this.state.data.Ratings[1].Value
-        } else {rating = "N/A"};
+
+console.log(ratingarr.length);
+
+    const tomatoView = () => {
+        if(ratingarr.length <=2) {
+          return (
+          <div></div>
+          )
+        } else
+      return(
+        <img src={tomato} className="star" alt="" />
+
+      )
+    }
+
+    const appendMovies = () => {
+      if(this.state.dataS){
+        return this.state.dataS.map((movie,index) => {
+          return (
+            <a href={`/id/${movie.imdbID}`}>
+            <li key={movie.imdbID} className="list-group-item">{movie.Title}</li>
+            </a>
+          )
+        })
       }
-      const appendMovies = () => {
-        if(this.state.dataS){
-          return this.state.dataS.map((movie,index) => {
-            return (
-              <a href={`/id/${movie.imdbID}`}>
-              <li key={movie.imdbID} className="list-group-item">{movie.Title}</li>
-              </a>
-            )
-          })
-        }
-      }
+    }
 
-      //react-bootstrap stuff
-
-
+   //display default info in case it's not present in returned data
+   if (this.state.data.Poster == 'N/A') {this.state.data.Poster = defaultPoster}
+   if (this.state.data.Plot == 'N/A') {this.state.data.Plot = 'Plot information is not available for this movie'}
 
     return (
       <div className="App">
@@ -176,15 +201,17 @@ class Params extends Component {
         </header>
         <div className="container">
           <div className="movieimage ">
-            <img width={203} src={this.state.data.Poster} onError={this.onError.bind(this)} alt="poster"/>
+
+            <img width={203} src={this.state.data.Poster}  alt="poster"/>
           </div>
-          <div className="col-lg-9 col-md-9 col-sm-10 col-xs-12">
+          <div className="col-lg-9 col-md-9 col-sm-10 col-xs-12 ">
             <h2>{this.state.data.Title}</h2>
             <h4>Year: {this.state.data.Year}</h4>
             <h4>Country: {this.state.data.Country}</h4>
             <div className="rating">
-              <img src={tomato} className="star" alt="tomato" />
+              {tomatoView()}
               <div><ul>{rating}</ul></div>
+
             </div>
             <p>{this.state.data.Plot}</p>
             <br/>
@@ -205,7 +232,7 @@ class Params extends Component {
             <div>
               <div >
                 <hr />
-                <h4>Comments </h4>
+                <h4>{commentsHeading} </h4>
                 <div>
                   {rows}
                 </div>

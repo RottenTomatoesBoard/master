@@ -28,7 +28,7 @@ input {
 
 .container{
     background-color:#ffffff;
-    padding-top:100px;
+    padding-top:60px;
     padding-bottom:50px;
     margin-bottom:50px;
 }
@@ -84,6 +84,7 @@ input {
 .movieimage{
   width:205px;
   height:305px;
+  padding-top: 24px;
   float:left;
 }
 .searchview{
