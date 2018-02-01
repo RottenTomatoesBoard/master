@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import defaultPoster from './movieposter.jpg'
 
+//some comments just to trigger webpack
+
 
 require('dotenv').config({path:'../.env'})
 
