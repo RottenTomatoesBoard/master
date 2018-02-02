@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import defaultPoster from './movieposter.jpg'
 
+//some comments just to trigger webpack
+
 
 require('dotenv').config({path:'../.env'})
 
@@ -81,9 +83,13 @@ class Params extends Component {
 
     var timeStamp = monthOfYear + ' ' +dayOfMonth +', '+year;
 
+    const formValidate = () => {
+       return(
+         <span className="required">  Name and comment are required</span>
+       )
+   }
     if (!this.state.name || !this.state.comment ) {
-      console.log('invalid form');
-      alert("You must provide both your name and your comment")
+      alert('Name and comment fields cannot be empty')
       return
     } else {
       console.log('form is good');
@@ -161,6 +167,8 @@ console.log(ratingarr.length);
       )
     }
 
+
+
     const appendMovies = () => {
       if(this.state.dataS){
         return this.state.dataS.map((movie,index) => {
@@ -227,7 +235,7 @@ console.log(ratingarr.length);
             <label>Comments <span className="required">*</span></label>
             <br/>
             <textarea name="comment" onChange={this.comment} className="col-lg-12 col-md-12 col-sm-12 col-xs-12"></textarea>
-            <button className="btn btn-success" onClick={this.handlePost.bind(this)}>Post</button>
+                <button className="btn btn-success" onClick={this.handlePost.bind(this)}>Post</button>
             <br/>
             <br/>
             <div>

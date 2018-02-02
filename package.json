@@ -1,5 +1,6 @@
 {
   "name": "omdb",
+  "homepage":"https://omdbnycda.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
