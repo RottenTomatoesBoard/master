@@ -187,6 +187,7 @@ console.log(ratingarr.length);
 
     return (
       <div className="App">
+      <title>{this.state.data.Title} - OMDB Rotten Tomato</title>
       <header className="App-header">
         <a href="/" target="_self"><img src={rotlogo} className="App-logo" alt="logo" /></a>
         <form action={`/id/${this.state.data1.imdbID}`}>
