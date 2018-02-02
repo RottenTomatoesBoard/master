@@ -55,7 +55,7 @@ const appendMovies = () => {
 }
 return(
   <div className="searchview">
-  <title>OMDB Rotten Tomato</title>
+  <title>OMDB Rotten Tomatoes</title>
     <div className="displayinfo">
       <img src={rotlogo} className="App-logo2" alt="logo" />
     <form action={`/id/${this.state.data1.imdbID}`}>
